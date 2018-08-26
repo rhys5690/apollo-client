@@ -23,7 +23,6 @@ class App extends Component {
               </Link>
             </header>
             <Link to={'/post/new'}>New Post</Link>
-            <NewPost />
             <Switch>
               <Route exact path="/" component={Posts} />
               <Route exact path="/post/new" component={NewPost} />

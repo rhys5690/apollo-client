@@ -25,9 +25,9 @@ class App extends Component {
             <Link to={'/post/new'}>New Post</Link>
             <NewPost />
             <Switch>
+              <Route exact path="/" component={Posts} />
               <Route exact path="/post/new" component={NewPost} />
               <Route path="/post/:id" component={Post} />
-              <Route exact path="/" component={Posts} />
             </Switch>
           </div>
         </Router>

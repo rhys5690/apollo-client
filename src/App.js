@@ -7,8 +7,16 @@ import Posts from './Posts/Posts';
 import NewPost from './Posts/NewPost';
 import './App.css';
 
+const defaultState = {
+  isEditMode: false
+}
+
 const client = new ApolloClient({
-  uri: 'https://api-uswest.graphcms.com/v1/cjl1w9gv1003y01ahhwfmkyjg/master'
+  uri: 'https://api-uswest.graphcms.com/v1/cjl1w9gv1003y01ahhwfmkyjg/master',
+  clientState: {
+    defaults: defaultState,
+    resolvers: {}
+  }
 });
 
 class App extends Component {

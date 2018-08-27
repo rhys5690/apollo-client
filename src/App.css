@@ -43,6 +43,21 @@ main {
   font-size: 1.6rem;
 }
 
+input, textarea {
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input {
+  font-size: 1.6rem;
+}
+
+textarea {
+  font-size: 1.2rem;
+  height: 50vh;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

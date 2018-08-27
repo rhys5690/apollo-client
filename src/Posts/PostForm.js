@@ -61,7 +61,7 @@ export default class PostForm extends Component {
           onChange={this.handleInput}
           value={body}
         />
-        <button>Submit</button>
+        <button className="button">Submit</button>
       </form>
     );
   }

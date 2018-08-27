@@ -22,12 +22,13 @@ class App extends Component {
                 <h1 className="App-title">GraphQL is Great</h1>
               </Link>
             </header>
-            <Link to={'/post/new'}>New Post</Link>
-            <Switch>
-              <Route exact path="/" component={Posts} />
-              <Route exact path="/post/new" component={NewPost} />
-              <Route path="/post/:id" component={Post} />
-            </Switch>
+            <main>
+              <Switch>
+                <Route exact path="/" component={Posts} />
+                <Route exact path="/post/new" component={NewPost} />
+                <Route path="/post/:id" component={Post} />
+              </Switch>
+            </main>
           </div>
         </Router>
       </ApolloProvider>

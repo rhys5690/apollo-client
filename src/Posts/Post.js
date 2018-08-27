@@ -28,10 +28,10 @@ export default class Post extends Component {
           return (
             <div>
               <section>
-                <h1>{post.title}</h1>
+                <p>{post.title}</p>
               </section>
               <section>
-                <h1>Edit Post</h1>
+                <h5>Edit Post</h5>
                 <UpdatePost post={post} />
               </section>
             </div>

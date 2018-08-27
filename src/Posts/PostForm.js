@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class PostForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
+  }
+
   state = {
-    title: '',
-    body: ''
+    id: this.props.post.id || '',
+    title: this.props.post.title || '',
+    body: this.props.post.body || ''
   };
   // reuseable handleInput
   handleInput = (e) => {
@@ -15,7 +21,7 @@ export default class PostForm extends Component {
   };
   render() {
     const { onSubmit } = this.props;
-    const { title, body } = this.state;
+    const { title, body, id } = this.state;
     return (
       <form
         onSubmit={(e) => {
@@ -23,7 +29,8 @@ export default class PostForm extends Component {
           onSubmit({
             variables: {
               title,
-              body
+              body,
+              id
             }
           })
             .then(() => {

@@ -8,6 +8,7 @@ const POST_QUERY = gql`
     post(where: { id: $id }) {
       title
       body
+      id
     }
   }
 `;

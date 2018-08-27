@@ -6,6 +6,10 @@ export default class PostForm extends Component {
     onSubmit: PropTypes.func.isRequired
   }
 
+  static defaultProps = {
+    post: {}
+  };
+
   state = {
     id: this.props.post.id || '',
     title: this.props.post.title || '',

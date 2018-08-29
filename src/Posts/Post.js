@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import UpdatePost from './UpdatePost';
 import EditMode from './EditMode';
 
@@ -28,6 +28,17 @@ export default class Post extends Component {
               ) : (
                 <section>
                   <h1>{post.title}</h1>
+                  <Mutation
+                    mutation={UPDATE_POST}
+                    variables={{
+                      id: post.id,
+                      check: !post.check
+                    }}
+                  >
+                    {(updatePost) => {
+                      <input type="checkbox" checked={post.checked} onChange={updatePost} />;
+                    }}
+                  </Mutation>
                 </section>
               )}
             </div>
@@ -44,7 +55,19 @@ const POST_QUERY = gql`
       id
       title
       body
+      check
     }
     isEditMode @client
+  }
+`;
+
+const UPDATE_POST = gql`
+  mutation updatePost($check: Boolean, $id: ID!) {
+    updatePost(where: { id: $id }, data: { check: $check }) {
+      title
+      body
+      id
+      check
+    }
   }
 `;

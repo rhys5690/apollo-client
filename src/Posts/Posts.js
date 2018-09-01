@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
-
-const POSTS_QUERY = gql`
-  query allPosts($skip: Int) {
-    posts(orderBy: createdAt_DESC, first: 10, skip: $skip) {
-      id
-      title
-      body
-    }
-  }
-`;
+import POSTS_QUERY from './Posts.graphql';
 
 export default class componentName extends Component {
   render() {

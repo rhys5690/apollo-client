@@ -34,10 +34,33 @@ export default class Post extends Component {
                       id: post.id,
                       check: !post.check
                     }}
-                  >
-                    {(updatePost) => {
-                      <input type="checkbox" checked={post.checked} onChange={updatePost} />;
+                    optimisticResponse={{
+                      __typename: 'Mutation',
+                      updatePost: {
+                        __typename: 'Post',
+                        check: !post.check
+                      }
                     }}
+                    update={(cache, { data: { updatePost } }) => {
+                      const data = cache.readQuery({
+                        query: POST_QUERY,
+                        variables: {
+                          id: post.id
+                        }
+                      });
+                      data.post.check = updatePost.check;
+                      cache.writeQuery({
+                        query: POST_QUERY,
+                        data: {
+                          ...data,
+                          post: data.post
+                        }
+                      })
+                    }}
+                  >
+                    {(updatePost) => (
+                      <input type="checkbox" checked={post.check} onChange={updatePost} />
+                    )}
                   </Mutation>
                 </section>
               )}
@@ -64,9 +87,6 @@ const POST_QUERY = gql`
 const UPDATE_POST = gql`
   mutation updatePost($check: Boolean, $id: ID!) {
     updatePost(where: { id: $id }, data: { check: $check }) {
-      title
-      body
-      id
       check
     }
   }
